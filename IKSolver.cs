@@ -26,9 +26,9 @@ public partial class IKSolver :Node3D{
 	//The node that the IK will point at
 	[Export] private Node3D targetNode;
 	//Magnet position in respect to the Target Skeleton
-	[Export] private Node3D magnetNode=null;	
+	[Export] public Node3D magnetNode=null;	
 	//A final node we may rotate the final bone to look at
-	[Export] private Node3D lookAt = null;
+	[Export] public Node3D lookAt = null;
 	//The Ids of the bone chain
 	[Export] private int[] boneIds = new int[3];
 	[Export] private string[] initBoneNames = null;
@@ -75,7 +75,7 @@ public partial class IKSolver :Node3D{
 	*/
 	public override void _Ready() {
 		//If there is an init-names list then use it
-		if(initBoneNames.Length>2){
+		if((initBoneNames!=null)&&(initBoneNames.Length>2)){
 			setBonesFromNames(initBoneNames);
 		}
 
