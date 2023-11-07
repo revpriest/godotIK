@@ -5,7 +5,7 @@ hands are placed on a target node.
 
 Like this:
 
-https://raw.githubusercontent.com/revpriest/godotIK/main/demo.webm
+![demoAnimation](https://raw.githubusercontent.com/revpriest/godotIK/main/demo.gif)
 
 The built-in system is apparently depreciated in V4, it's not clear if it'll be replaced.
 
