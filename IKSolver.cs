@@ -231,13 +231,11 @@ public partial class IKSolver :Node3D{
 			Transform3D endBoneTransform = targetSkeleton.GetBoneGlobalRest(boneIds[2]);
 			if(lookAt!=null){
 				Vector3 pos = getLocalIgnoringScale(targetSkeleton.GetParent<Node3D>(), lookAt.GlobalPosition);
+				pos = targetSkeleton.GlobalTransform.Basis.GetRotationQuaternion().Inverse() * pos;
 				endBoneTransform = endBoneTransform.LookingAt(pos,targetSkeleton.Transform.Basis.Y);
 			}
-			endBoneTransform.Basis = new Basis(
-												
-												(targetSkeleton.GlobalTransform.Basis.GetRotationQuaternion().Inverse() * 
-												((Node3D) targetNode.GetParent()).GlobalTransform.Basis.GetRotationQuaternion() * 
-												targetNode.Basis.GetRotationQuaternion()) *
+			endBoneTransform.Basis = new Basis( (targetSkeleton.GlobalTransform.Basis.GetRotationQuaternion().Inverse() * 
+												targetNode.GlobalTransform.Basis.GetRotationQuaternion()) *
 												endBoneTransform.Basis.GetRotationQuaternion() * Quaternion.FromEuler(boneRestRotset));
 			targetSkeleton.SetBonePoseRotation(boneIds[2], GlobalPoseToLocalPose(boneIds[2], endBoneTransform).Basis.GetRotationQuaternion());
 		}
